@@ -12,5 +12,6 @@ Node.js/Express template application which I use as a base for creating API web 
 It can be used as a base for a project. I am still working on improving some details.
 
 ### TODO:
-* Add process manager (pm2)
-* Add testing framework (jest)
+* Replace `debug` with `pino-debug` package
+* Add process manager
+* Add testing framework
