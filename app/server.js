@@ -1,18 +1,35 @@
 const config = require('./config');
 const app = require('./app');
+const debug = require('debug')('server');
+
+debug('booting ...');
+
+/**
+ * Store port in Express.
+ */
+
+app.set('port', config.express.port);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+app.listen(config.express.port, config.express.ip);
+app.on('error', onError);
+app.on('listening', onListening);
 
 /**
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error) {
+function onError (error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
   const bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+    ? 'Pipe ' + config.express.port
+    : 'Port ' + config.express.port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -33,18 +50,10 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening() {
-  const addr = server.address();
+function onListening () {
+  const addr = app.address();
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
-
-app.listen(config.express.port, config.express.ip, (err) => {
-  if (err) {
-    return console.error('something bad happened', err);
-  }
-
-  console.log(`server is listening on ${config.express.ip}:${config.express.port}`);
-});
