@@ -1,6 +1,9 @@
 const env = require('./environment');
 const express = require('express');
 const app = express();
+const logger = require('express-pino-logger')();
+
+app.use(logger);
 
 require('./api/test/routes')(app, {}, '/test');
 
