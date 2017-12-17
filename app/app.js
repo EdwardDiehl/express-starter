@@ -5,7 +5,7 @@ const logger = require('express-pino-logger')();
 
 app.use(logger);
 
-require('./api/test/routes')(app, {}, '/test');
+require('./api/example/routes')(app, {}, '/example');
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
