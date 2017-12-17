@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ignore-path .gitignore **/*.js; exit 0",
     "server": "DEBUG=server node --trace-sync-io app/server.js | pino-toke :method :url :status :res[content-length] - :response-time ms",
-    "debug": "node --inspect-brk=9229 app/server.js"
+    "debug": "DEBUG=server node --inspect-brk=9229 app/server.js"
   },
   "author": "",
   "license": "",

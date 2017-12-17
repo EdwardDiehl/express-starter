@@ -2,7 +2,7 @@ const config = require('./config');
 const app = require('./app');
 const debug = require('debug')('server');
 
-debug('booting ...');
+debug('Booting ...');
 
 /**
  * Store port in Express.
@@ -14,9 +14,9 @@ app.set('port', config.express.port);
  * Listen on provided port, on all network interfaces.
  */
 
-app.listen(config.express.port, config.express.ip);
-app.on('error', onError);
-app.on('listening', onListening);
+const server = app.listen(config.express.port, config.express.ip);
+server.on('error', onError);
+server.on('listening', onListening);
 
 /**
  * Event listener for HTTP server "error" event.
@@ -51,7 +51,7 @@ function onError (error) {
  */
 
 function onListening () {
-  const addr = app.address();
+  const addr = server.address();
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
