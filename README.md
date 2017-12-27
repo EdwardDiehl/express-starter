@@ -6,6 +6,7 @@ Node.js/Express template application which I use as a base for creating API web 
 
 * [Node.js Best Practices](https://github.com/i0natan/nodebestpractices)
 * [Express' application generator](https://github.com/expressjs/generator) source code
+* [The Twelve-Factor App](https://12factor.net/)
 * Many tutorials and blog posts
 
 ### Current state:
