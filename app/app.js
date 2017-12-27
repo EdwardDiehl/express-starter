@@ -1,7 +1,7 @@
-const env = require('./environment');
 const express = require('express');
 const app = express();
 const logger = require('express-pino-logger')();
+const config = require('./config');
 
 app.use(logger);
 
@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = env.name === 'development' ? err : {};
+  res.locals.error = config.env.name === 'development' ? err : {};
 
   // send the error
   const statusCode = err.status || 500;

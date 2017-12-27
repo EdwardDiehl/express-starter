@@ -1,5 +1,13 @@
+const fs = require('fs');
+const path = require('path');
+
 const config = module.exports;
 
-config.express = require('./express');
+fs.readdirSync(__dirname)
+  .filter(fileName => fileName !== path.basename(__filename))
+  .forEach(fileName => {
+    const fileNameWithoutExtension = path.basename(fileName, '.js');
+    config[fileNameWithoutExtension] = require(`./${fileNameWithoutExtension}`);
+  });
 
 Object.freeze(config);
