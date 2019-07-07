@@ -1,4 +1,4 @@
-module.exports = function (app, db, path) {
+module.exports = function ({ path, app }) {
   app.get(`${path}`, (req, res) => {
     res.send(req.query);
   });

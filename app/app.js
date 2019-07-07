@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
-const logger = require('express-pino-logger')();
 const config = require('./config');
 
+const logger = require('express-pino-logger')();
 app.use(logger);
 
-require('./api/example/routes')(app, {}, '/example');
+require('./api/example/routes')({ path: '/example', app: app });
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -23,7 +23,7 @@ app.use((err, req, res, next) => {
   // send the error
   const statusCode = err.status || 500;
   res.status(statusCode);
-  res.send({'error': statusCode});
+  res.send({ 'error': statusCode });
 });
 
 module.exports = app;
